@@ -1,0 +1,19 @@
+@import 'src/app/main-page/main-page.component.css';
+
+label{
+    font-size: 24px;
+}
+h1{
+    text-align: center;
+}
+
+.form-control-title{
+    width: 100%;
+    resize: none;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #929aab;
+    background-color: #fdfcfc;
+    font-size: 1rem;
+}

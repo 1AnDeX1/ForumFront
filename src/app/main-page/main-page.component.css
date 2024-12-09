@@ -1,0 +1,68 @@
+.thread-ul{
+    margin: 0;
+    padding: 0;
+}
+
+.thread-buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+.search-box input{
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 12px;
+    background: #fdfcfc; 
+    color: #393e46;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 2px solid #393e46;
+}
+.search-box button{
+    padding: 4px 6px;
+    background: #fdfcfc; 
+    color: #393e46;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 2px solid #393e46;
+}
+.create-thread-btn{
+    padding: 8px 10px;
+    background: #fdfcfc; 
+    color: #393e46;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 2px solid #393e46;
+}
+#thread-list{
+    list-style-type: none;
+    margin: 0;
+}
+#thread-list-item{
+    width: 100%;
+    padding: 8px 10px;
+    border: 2px solid #393e46;
+    border-radius: 3px;
+    margin: 7px 0;
+    overflow: hidden;
+}
+#thread-list-item-top{
+    display: flex;
+    justify-content: space-between;
+}
+#thread-title{
+    width: 100%;
+    font-weight: bold;
+    font-size: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+#thread-list-item-low{
+    font-size: 18px;
+    cursor: pointer;
+}
+.additional-info {
+    display: flex;
+    align-items: center;
+}

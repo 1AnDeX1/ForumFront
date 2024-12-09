@@ -1,0 +1,61 @@
+<div class="search-box">
+    <input type="text" placeholder="Search by title" [(ngModel)]="searchTitle" />
+    <button (click)="onSearch()">Search</button>
+</div>
+<div class="thread-buttons">
+    <a routerLink="/create-thread">
+        <button class="create-thread-btn" > + Create </button>
+    </a>
+</div>
+<div>
+    <ul class="thread-ul">
+        <li *ngFor="let thread of threads" id="thread-list">
+            <div id="thread-list-item">
+                <div id="thread-list-item-top">
+                    <div id="thread-title"  (click)="threadDetails(thread.id)">
+                        {{thread.title}}
+                    </div>
+                    <div>
+                        <ng-container *ngIf="thread.userName === currentUser; else checkAdminAccess">
+                            <div (click)="populateForm(thread)">
+                              <mat-icon>edit_square</mat-icon>
+                            </div>
+                            <div (click)="onDelete(thread.id)">
+                                <mat-icon>
+                                    delete
+                                </mat-icon>
+                            </div>
+                        </ng-container>
+
+                        <ng-template #checkAdminAccess>
+                            <div [appHideIfClaimsNotMet]="claimReq.admin" (click)="populateForm(thread)">
+                                <mat-icon>edit_square</mat-icon>
+                            </div>
+                            <div [appHideIfClaimsNotMet]="claimReq.admin" (click)="onDelete(thread.id)">
+                                <mat-icon>
+                                    delete
+                                </mat-icon>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <div id="thread-list-item-low" (click)="threadDetails(thread.id)">
+                    <div id="thread-details">
+                        <div class="additional-info">
+                            <mat-icon>person</mat-icon>
+                            {{ thread.userName }}
+                        </div>
+                        <div class="additional-info">
+                            <mat-icon >calendar_month</mat-icon>
+                            {{ thread.created | date }}
+                        </div>
+                    </div>
+                    <div id="thread-content">
+                        {{thread.content}}
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<mat-paginator [length]=threadsCount [pageSize]=pageSize [pageIndex]='pageNumber - 1' (page)=pageChanged($event)></mat-paginator>

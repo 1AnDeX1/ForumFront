@@ -1,0 +1,41 @@
+/* General Layout */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #393e46; 
+}
+  
+#forum-name {
+    font-size: 50px;
+    color: #eeeeee; 
+    margin: 0;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-button{
+    padding: 8px 10px;
+    background: #393e46; 
+    color: #eeeeee;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 1px solid #eeeeee;
+}
+
+#user-name{
+    color: #eeeeee;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 38px;
+    height: 100%;
+}
+
+#main-page{
+    margin: 5% 20%;
+}

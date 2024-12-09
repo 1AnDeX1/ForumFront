@@ -1,0 +1,24 @@
+<header class="header">
+    <a routerLink="/" style="text-decoration: none;">
+        <h1 id="forum-name">Forum</h1>
+    </a>
+    <div *ngIf="!this.authService.isLoggedIn()" class="auth-buttons">
+        <a routerLink="/auth/signup">
+        <button class="auth-button">Registration</button>
+        </a>
+        <a routerLink="/auth/signin">
+        <button class="auth-button">Login</button>
+        </a>
+    </div>
+    <div *ngIf="this.authService.isLoggedIn()" class="auth-buttons">
+        <div id="user-name">
+            Hello, {{currentUser}}
+        </div>
+        <button class="auth-button" (click)="onLogout()">Logout</button>
+    </div>
+</header>
+<div id="main-page">
+    <router-outlet></router-outlet>
+</div>
+
+

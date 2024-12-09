@@ -1,0 +1,20 @@
+<h1>Your thread</h1>
+<form #form="ngForm" (submit)="onSubmit(form)"
+[class.submitted] = "service.formSubmitted">
+    <div>
+        <label>Title</label>
+        <textarea class="form-control-title"
+         type="text"
+        #title="ngModel" name="title"
+        [(ngModel)]="service.formData.title"
+        required maxlength="100"></textarea>
+
+        <label>Content</label>
+        <textarea class="form-control"
+        type="text"
+        #content="ngModel" name="content"
+        [(ngModel)]="service.formData.content"
+        required maxlength="5000"></textarea>
+    </div>
+    <button type="submit" class="create-thread-btn">Create</button>
+</form>

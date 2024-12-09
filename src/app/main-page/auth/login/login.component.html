@@ -1,0 +1,30 @@
+<h1 class="auth-title">Login</h1>
+<div class="auth-title">
+    Don't have an account?
+    <a routerLink="/auth/signup">
+        Sign up
+    </a>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+        <input class="auth-input" type="text" placeholder="Name"
+        formControlName="username">
+        <div class="error-feedback" 
+        *ngIf="hasDisplayableError('username') && form.controls.username.hasError('required')">
+            Please enter your user name.
+        </div>
+    </div>
+    <div>
+        <input class="auth-input" type="text" placeholder="Password"
+        formControlName="password">
+        <div class="error-feedback" 
+        *ngIf="hasDisplayableError('password') && form.controls.password.hasError('required')">
+            Please enter your password.
+        </div>
+    </div>
+    <div>
+        <button class="auth-submit" type="submit">
+            Sign in
+        </button>
+    </div>
+</form>

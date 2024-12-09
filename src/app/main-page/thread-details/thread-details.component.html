@@ -1,0 +1,130 @@
+<div id="thread-list-item">
+  <div id="thread-list-item-top">
+      <div id="thread-title">
+          {{thread.title}}
+      </div>
+  </div>
+  <div id="thread-list-item-low">
+      <div id="thread-details">
+          <div class="additional-info">
+              <mat-icon class="icon-low">person</mat-icon>
+              {{ thread.userName }}
+          </div>
+          <div class="additional-info">
+              <mat-icon class="icon-low">calendar_month</mat-icon>
+              {{ thread.created | date }}
+          </div>
+      </div>
+      <div id="thread-content">
+          {{thread.content}}
+      </div>
+  </div>
+</div>
+
+<form #form="ngForm" (submit)="onCreate(form)"
+[class.submitted] = "postService.formSubmitted">
+    <textarea
+    id="content"
+    #content="ngModel"
+    name="content"
+    [(ngModel)]="postService.postFormData.content"
+    required
+    maxlength="5000"
+    rows="5"  
+    cols="40"
+    placeholder="Write your post content here..."
+    class="form-control"></textarea>
+    <button type="submit" class="create-post-btn">Post your answer</button>
+</form>
+
+<div class="posts">
+  <h3>Answers:</h3>
+  <ul>
+    <li *ngFor="let post of posts">
+      <div class="post">
+        <div *ngIf="editingPostId !== post.id; else editTemplate">
+          <div class="post-content">{{ post.content }}</div>
+          <div>
+            <div class="additional-info">
+              <mat-icon class="icon-low">person</mat-icon>
+              {{ post.userName }}
+            </div>
+            <div class="additional-info"> 
+              <mat-icon class="icon-low">calendar_month</mat-icon>
+              {{ post.created | date }}
+            </div>
+          </div>
+          <div class="post-btns">
+            <div class="post-btn" (click)="showReplyInput(post.id)">Reply</div>
+            <ng-container *ngIf="post.userName == currentUser; else checkAdminAccess">
+              <div class="post-btn" (click)="populateForm(post)">Edit</div>
+              <div class="post-btn" (click)="onDelete(post.id)">Delete</div>
+            </ng-container>
+            <ng-template #checkAdminAccess>
+              <div [appHideIfClaimsNotMet]="claimReq.admin" class="post-btn" (click)="populateForm(post)">Edit</div>
+              <div [appHideIfClaimsNotMet]="claimReq.admin" class="post-btn" (click)="onDelete(post.id)">Delete</div>
+            </ng-template>
+          </div>
+        </div>
+  
+        <ng-template #editTemplate>
+          <div class="edit-content">
+            <textarea class="form-control" type="text" [(ngModel)]="editContent" required maxlength="5000"></textarea>
+            <div class="post-btns">
+              <div class="post-btn" (click)="onUpdate(post)">Save</div>
+              <div class="post-btn" (click)="cancelEdit()">Cancel</div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      
+
+      <div *ngIf="replyingPostId === post.id">
+        <textarea class="form-control" type="text" [(ngModel)]="replyContent" required maxlength="5000" placeholder="Write your reply..."></textarea>
+        <div class="post-btns">
+          <div class="post-btn" (click)="onCreateReply(post.id)">Reply</div>
+          <div class="post-btn" (click)="cancelReply()">Cancel</div>
+        </div>
+      </div>
+
+      <div *ngIf="replies[post.id] && replies[post.id].length > 0">
+        <ul>
+          <li *ngFor="let reply of replies[post.id]">
+            <div class="reply" *ngIf="editingReplyId !== reply.id; else editReplyTemplate">
+              <div class="post-content">{{ reply.content }}</div>
+              <div>
+                <div class="additional-info">
+                  <mat-icon class="icon-low">person</mat-icon>
+                  {{ reply.userName }}
+                </div>
+                <div class="additional-info"> 
+                  <mat-icon class="icon-low">calendar_month</mat-icon>
+                  {{ reply.created | date }}
+                </div>
+              </div>
+              <div class="post-btns">
+                <ng-container *ngIf="reply.userName == currentUser; else checkAdminReplyAccess">
+                  <div class="reply-btn" (click)="startEditReply(reply.id, reply.content)">Edit</div>
+                  <div class="reply-btn" (click)="onDeleteReply(reply.id, post.id)">Delete</div>
+                </ng-container>
+                <ng-template #checkAdminReplyAccess>
+                  <div [appHideIfClaimsNotMet]="claimReq.admin" class="reply-btn" (click)="startEditReply(reply.id, reply.content)">Edit</div>
+                  <div [appHideIfClaimsNotMet]="claimReq.admin" class="reply-btn" (click)="onDeleteReply(reply.id, post.id)">Delete</div>
+                </ng-template>
+              </div>
+            </div>
+  
+            <ng-template #editReplyTemplate>
+              <textarea class="form-control" [(ngModel)]="editReplyContent" required maxlength="5000"></textarea>
+              <div class="post-btns">
+                <div class="post-btn" (click)="onUpdateReply(reply.id, post.id)">Save</div>
+                <div class="post-btn" (click)="cancelEditReply()">Cancel</div>
+              </div>
+            </ng-template>
+
+          </li>
+        </ul>
+      </div>
+  </ul>
+</div>
+<mat-paginator [length]=postsCount [pageSize]=pageSize [pageIndex]='pageNumber - 1' (page)=pageChanged($event)></mat-paginator>

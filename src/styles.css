@@ -1,0 +1,30 @@
+form.submitted input.ng-invalid{
+    border-color: red;
+}
+
+.form-control {
+    resize: none;
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #929aab;
+    background-color: #fdfcfc;
+    font-size: 1rem;
+    overflow-y:scroll
+}
+
+html { 
+    height: 100%; 
+}
+
+body { 
+    background: #f7f7f7;
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button{
+    cursor: pointer;
+}

@@ -1,0 +1,57 @@
+@import 'src/app/main-page/main-page.component.css';
+ul{
+    list-style-type: none;
+}
+.posts{
+    font-size: 20px;
+}
+
+.create-post-btn{
+    padding: 4px 6px;
+    background: #fdfcfc; 
+    color: #393e46;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 2px solid #393e46;
+}
+
+.post{    
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 2px 10px;
+    margin: 10px 0;
+}
+.reply{
+    background-color:  #929aab;
+    border-radius: 3px;
+    padding: 2px 10px;
+    margin: 10px 0;
+}
+
+.post-btns{
+    display: flex;
+}
+
+.post-btn{
+    color: #393e46;
+    margin: 0 5px;
+    font-size: 18px;
+    font-size: 14px;
+}
+
+.post-btn:hover{
+    color: #929aab;
+    cursor: pointer;
+}
+
+.reply-btn{
+    color: #000;
+    margin: 0 5px;
+    font-size: 18px;
+    font-size: 14px;
+}
+
+.reply-btn:hover{
+    color: #fff;
+    cursor: pointer;
+}
