@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { claimReq } from './shared/utils/claimReq-utils';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +18,23 @@ export class AppComponent implements OnInit{
     {}
 
   currentUser: string | null = null;
+  private userSubscription!: Subscription;
+  
+  claimReq = claimReq;
   
   ngOnInit(): void {
-    this.currentUser = this.authService.getUserName();
+    this.userSubscription = this.authService.getUserName$().subscribe((userName) => {
+      this.currentUser = userName;
+    });
+    if(this.currentUser == null){
+      this.currentUser = this.authService.getUserName();
+    }
+  }
 
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
   onLogout(){

@@ -2,6 +2,11 @@
     <a routerLink="/" style="text-decoration: none;">
         <h1 id="forum-name">Forum</h1>
     </a>
+    <div *ngIf="claimReq.admin(authService.getClaims())">
+        <a routerLink="/admin-page" style="text-decoration: none;">
+            <h1 id="users-button">Users</h1>
+        </a>
+    </div>
     <div *ngIf="!this.authService.isLoggedIn()" class="auth-buttons">
         <a routerLink="/auth/signup">
         <button class="auth-button">Registration</button>

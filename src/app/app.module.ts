@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -18,6 +17,8 @@ import { AuthInterceptor } from './shared/auth.interceptor';
 import {MatIconModule} from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HideIfClaimsNotMetDirective } from './shared/directives/hide-if-claims-not-met.directive';
+import { AdminPageComponent } from './main-page/admin-page/admin-page.component';
+import { UserUpdateComponent } from './main-page/admin-page/user-update/user-update.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { HideIfClaimsNotMetDirective } from './shared/directives/hide-if-claims-
     AuthComponent,
     FirstKeyPipe,
     HideIfClaimsNotMetDirective,
+    AdminPageComponent,
+    UserUpdateComponent,
   ],
   imports: [
     BrowserModule,

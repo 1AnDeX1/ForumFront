@@ -7,9 +7,13 @@ import { AuthComponent } from './main-page/auth/auth.component';
 import { LoginComponent } from './main-page/auth/login/login.component';
 import { authGuard } from './shared/auth.guard';
 import { ThreadDetailsComponent } from './main-page/thread-details/thread-details.component';
+import { AdminPageComponent } from './main-page/admin-page/admin-page.component';
+import { UserUpdateComponent } from './main-page/admin-page/user-update/user-update.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent},
+  { path: 'admin-page', component: AdminPageComponent},
+  { path: 'user-update', component: UserUpdateComponent},
   { path: 'create-thread', component: ThreadCreateFormComponent,
     canActivate: [authGuard] },
   { path: 'auth', component: AuthComponent,

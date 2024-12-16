@@ -13,6 +13,11 @@
     margin: 0;
 }
 
+#users-button{
+    font-size: 28px;
+    color: #eeeeee; 
+}
+
 .auth-buttons {
     display: flex;
     gap: 10px;

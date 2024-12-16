@@ -6,6 +6,12 @@ ul{
     font-size: 20px;
 }
 
+#thread-title-detail{
+    width: 100%;
+    font-weight: bold;
+    font-size: 25px;
+}
+
 .create-post-btn{
     padding: 4px 6px;
     background: #fdfcfc; 

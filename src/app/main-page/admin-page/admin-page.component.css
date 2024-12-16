@@ -1,0 +1,45 @@
+button{
+    background-color: none;
+
+}
+.search-box input{
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 12px;
+    background: #fdfcfc; 
+    color: #393e46;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 2px solid #393e46;
+}
+.search-box button{
+    padding: 4px 6px;
+    background: #fdfcfc; 
+    color: #393e46;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 2px solid #393e46;
+}
+.user-details{
+    display: flex;
+    justify-content: space-between;
+}
+#user-list-item{
+    list-style-type: none;
+    padding: 10px 10px;
+    margin: 0;
+    font-size: 22px;
+}
+
+#user-list-item:nth-child(odd){
+    background-color: #929aab;
+}
+
+#user-list-item:nth-child(even){
+    background-color: lightgray;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}

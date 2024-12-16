@@ -1,0 +1,48 @@
+<div class="admin-page">
+    <!-- Search Box -->
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Search by username"
+        [(ngModel)]="userName"
+      />
+      <button (click)="loadUsers()">Search</button>
+    </div>
+  
+    <!-- Users List -->
+    <div class="users-list">
+      <ul class="users-ul">
+        <li *ngFor="let user of users" id="user-list-item">
+          <div class="user-details">
+            <div class="user-data">
+              <div class="user-info">
+                <mat-icon>person</mat-icon>
+                <div class="user-name">{{ user.userName }}</div>
+              </div>
+              <div class="user-info">
+                <mat-icon>email</mat-icon>
+              <div class="user-email">{{ user.email }}</div>
+              </div>
+            </div>
+            <div class="user-actions">
+              <div class="edit-user-btn" (click)="editUser(user)">
+                <mat-icon>edit</mat-icon>
+              </div>
+              <div class="delete-user-btn" (click)="onDelete(user.id)">
+                <mat-icon>delete</mat-icon>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Paginator -->
+    <mat-paginator
+      [length]="usersCount"
+      [pageSize]="pageSize"
+      [pageIndex]="pageNumber - 1"
+      (page)="pageChanged($event)"
+    ></mat-paginator>
+  </div>
+  

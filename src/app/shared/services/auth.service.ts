@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { TOKEN_KEY, USER_NAME } from '../constants';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private userNameSubject = new BehaviorSubject<string | null>(localStorage.getItem('USER_NAME'));
 
   constructor(private http: HttpClient) { }
 
@@ -36,6 +38,11 @@ export class AuthService {
 
   saveUserName(userName: string){
     localStorage.setItem(USER_NAME, userName)
+    this.userNameSubject.next(userName);
+  }
+
+  getUserName$() {
+    return this.userNameSubject.asObservable();
   }
 
   getUserName(): string | null {
@@ -44,6 +51,7 @@ export class AuthService {
 
   deleteUserName() {
     localStorage.removeItem(USER_NAME);
+    this.userNameSubject.next(null);
   }
   
   getClaims() {
